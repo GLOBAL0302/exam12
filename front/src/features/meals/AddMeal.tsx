@@ -14,7 +14,6 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import FormHelperText from '@mui/material/FormHelperText';
 import { submitMealThunk } from './mealThunks';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { notifySuccess } from '../../utils/ToastifyFuncs/ToastConfig';
 
 const initialState = {

@@ -33,3 +33,7 @@ export const fetchMealsThunk = createAsyncThunk<IMeal[], string>('meal/fetchMeal
     console.log(e);
   }
 });
+
+export const deleteOneMealThunk = createAsyncThunk<void, string>('meal/deleteOneMealThunk', async (mealId) => {
+  await axiosApi.delete(`/meals/${mealId}`);
+});

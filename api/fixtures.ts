@@ -49,6 +49,20 @@ const run = async () => {
       image: 'fixtures/lagman.jpg',
     },
     {
+      title: 'lagma2',
+      user: user,
+      recipe:
+        'Laghman, leghmen, laghmen, lagman, or leghman is a dish of meat, vegetables and pulled noodles from Uyghur cuisine. In Chinese, the noodle is known as',
+      image: 'fixtures/lagman.jpg',
+    },
+    {
+      title: 'lagma3',
+      user: user,
+      recipe:
+        'Laghman, leghmen, laghmen, lagman, or leghman is a dish of meat, vegetables and pulled noodles from Uyghur cuisine. In Chinese, the noodle is known as',
+      image: 'fixtures/lagman.jpg',
+    },
+    {
       title: 'plov',
       user: user2,
       recipe:

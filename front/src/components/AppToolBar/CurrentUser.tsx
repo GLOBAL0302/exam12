@@ -7,11 +7,12 @@ import type { IUserFields } from '../../types';
 import Avatar from '@mui/material/Avatar';
 
 import Typography from '@mui/material/Typography';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { Link } from 'react-router-dom';
 import { apiUrl } from '../../GlobalConstant';
 import { logOutThunk } from '../../features/users/userThunk';
+import { selectUser } from '../../features/users/UserSlice';
 
 type IProps = {
   user: IUserFields;
@@ -19,6 +20,7 @@ type IProps = {
 
 const CurrentUser: React.FC<IProps> = ({ user }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
   const dispatch = useAppDispatch();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -64,7 +66,7 @@ const CurrentUser: React.FC<IProps> = ({ user }) => {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/myMeals">My Meals</Link>
+          <Link to={`/meals/${user._id}`}>My Meals</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link to="/addMeals">Add Meals</Link>

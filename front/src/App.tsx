@@ -4,7 +4,6 @@ import UserRegister from './features/users/UserRegister';
 import UserLogin from './features/users/UserLogin';
 import AppBarComponent from './components/AppToolBar/AppBarComponent';
 import AddMeal from './features/meals/AddMeal';
-
 import ProtectedRoute from './components/AppToolBar/ProtectedRoute/ProtectedRoute';
 import { useAppSelector } from './app/hooks';
 import { selectUser } from './features/users/UserSlice';
@@ -19,10 +18,7 @@ function App() {
       <div className="max-w-3xl mx-auto">
         <Routes>
           <Route path="/" element={<Meals />} />
-
           <Route path="/meals/:userId" element={<Meals />} />
-
-
           <Route path="/:mealId" element={<MealDetail />} />
           <Route
             path="/addMeals"

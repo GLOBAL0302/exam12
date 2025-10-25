@@ -5,15 +5,21 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { apiUrl } from '../../GlobalConstant';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useAppDispatch } from '../../app/hooks';
+import { deleteOneMealThunk } from './mealThunks';
 
 interface Props {
   meal: IMeal;
+  isOwnRecipe: boolean;
+  fetchMeal: () => void;
 }
 
-const Meal: React.FC<Props> = ({ meal }) => {
+const Meal: React.FC<Props> = ({ meal, isOwnRecipe, fetchMeal }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   let image;
   if (meal.image) {
     image = apiUrl + '/' + meal.image;
@@ -23,6 +29,13 @@ const Meal: React.FC<Props> = ({ meal }) => {
     e.stopPropagation();
     navigate(`/meals/${meal.user._id}`);
   };
+  const deleteMeal = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    await dispatch(deleteOneMealThunk(meal._id));
+
+    fetchMeal();
+  };
+
   return (
     <div>
       <Card sx={{ width: '20rem' }} className="relative" onClick={() => navigate(`/${meal._id}`)}>
@@ -34,6 +47,13 @@ const Meal: React.FC<Props> = ({ meal }) => {
           <Button variant="outlined" onClick={(e) => navigateToMeal(e)}>
             Meal by: {meal.user.displayName}
           </Button>
+          <div className="absolute top-0 right-0">
+            {isOwnRecipe && (
+              <Button onClick={deleteMeal} variant="contained" className="" color="error" startIcon={<DeleteIcon />}>
+                delete
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -37,4 +37,14 @@ mealsRouter.post('/', auth, upload.single('image'), async (req, res, next) => {
   }
 });
 
+mealsRouter.delete('/:mealId', async (req, res, next) => {
+  const { mealId } = req.params;
+  try {
+    await Meal.findByIdAndDelete({ _id: mealId });
+    res.status(200).send({ message: 'Meal is deleted' });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 export default mealsRouter;
