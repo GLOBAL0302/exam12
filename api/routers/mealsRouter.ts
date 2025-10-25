@@ -3,12 +3,13 @@ import { Error } from 'mongoose';
 import { auth, IReqWithUser } from '../middleware/auth';
 import { upload } from '../middleware/multer';
 import { Meal } from '../models/Meal';
-
 const mealsRouter = express.Router();
 
 mealsRouter.get('/', async (req, res, next) => {
+  const { userId } = req.query;
+  let filter = userId ? { user: userId } : {};
   try {
-    const meals = await Meal.find().populate('user', '-token');
+    const meals = await Meal.find(filter).populate('user', '-token');
     res.status(200).send(meals);
   } catch (e) {
     console.log(e);

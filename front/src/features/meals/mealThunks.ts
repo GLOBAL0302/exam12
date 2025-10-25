@@ -27,7 +27,7 @@ export const submitMealThunk = createAsyncThunk<void, IMealMutation, { rejectVal
 
 export const fetchMealsThunk = createAsyncThunk<IMeal[], string>('meal/fetchMealsThunk', async (mealParam) => {
   try {
-    const { data } = await axiosApi.get('/meals');
+    const { data } = await axiosApi.get(`/meals?userId=${mealParam}`);
     return data;
   } catch (e) {
     console.log(e);

@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { IMeal } from '../../types';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { apiUrl } from '../../GlobalConstant';
-import Modal from '@mui/material/Modal';
-import { useNavigate } from 'react-router-dom';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '70%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { Link, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 interface Props {
   meal: IMeal;
@@ -30,6 +18,11 @@ const Meal: React.FC<Props> = ({ meal }) => {
   if (meal.image) {
     image = apiUrl + '/' + meal.image;
   }
+
+  const navigateToMeal = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    navigate(`/meals/${meal.user._id}`);
+  };
   return (
     <div>
       <Card sx={{ width: '20rem' }} className="relative" onClick={() => navigate(`/${meal._id}`)}>
@@ -38,9 +31,9 @@ const Meal: React.FC<Props> = ({ meal }) => {
           <Typography gutterBottom variant="h4" component="p">
             {meal.title}
           </Typography>
-          <Typography variant="subtitle1" component="p">
+          <Button variant="outlined" onClick={(e) => navigateToMeal(e)}>
             Meal by: {meal.user.displayName}
-          </Typography>
+          </Button>
         </CardContent>
       </Card>
     </div>

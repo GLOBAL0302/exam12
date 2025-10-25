@@ -79,26 +79,28 @@ const MealDetail = () => {
             <Comments key={comment._id} comment={comment} deleteFunc={deleteComment} />
           ))}
         </Box>
-        <Box component="form" onSubmit={submitComment}>
-          <Box component="div">
-            <FormControl>
-              <FormLabel htmlFor="name">Title</FormLabel>
-              <TextField
-                required
-                onChange={(e) => setUserText(e.target.value)}
-                autoComplete="title"
-                name="title"
-                fullWidth
-                id="title"
-                placeholder="Food name"
-                value={userText}
-              />
-            </FormControl>
+        {user && (
+          <Box component="form" onSubmit={submitComment}>
+            <Box component="div">
+              <FormControl>
+                <FormLabel htmlFor="name">Title</FormLabel>
+                <TextField
+                  required
+                  onChange={(e) => setUserText(e.target.value)}
+                  autoComplete="title"
+                  name="title"
+                  fullWidth
+                  id="title"
+                  placeholder="Food name"
+                  value={userText}
+                />
+              </FormControl>
+            </Box>
+            <Button variant="outlined" type="submit">
+              add Comment
+            </Button>
           </Box>
-          <Button variant="outlined" type="submit">
-            add Comment
-          </Button>
-        </Box>
+        )}
       </Box>
     </div>
   );

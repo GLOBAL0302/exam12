@@ -19,6 +19,10 @@ function App() {
       <div className="max-w-3xl mx-auto">
         <Routes>
           <Route path="/" element={<Meals />} />
+
+          <Route path="/meals/:userId" element={<Meals />} />
+
+
           <Route path="/:mealId" element={<MealDetail />} />
           <Route
             path="/addMeals"
