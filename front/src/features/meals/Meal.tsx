@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { apiUrl } from '../../GlobalConstant';
 import Modal from '@mui/material/Modal';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectUser } from '../users/UserSlice';
+import { useNavigate } from 'react-router-dom';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -26,28 +25,16 @@ interface Props {
 }
 
 const Meal: React.FC<Props> = ({ meal }) => {
-  const [modal, setModal] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
-
+    
+ 
+  const navigate = useNavigate();
   let image;
-
   if (meal.image) {
     image = apiUrl + '/' + meal.image;
   }
-
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setModal(false);
-  };
-
   return (
     <div>
-      <Card sx={{ width: '20rem' }} className="relative" onClick={() => openModal()}>
+      <Card sx={{ width: '20rem' }} className="relative" onClick={() => navigate(`/${meal._id}`)}>
         <CardMedia sx={{ height: 140 }} image={image} title={meal.title} />
         <CardContent>
           <Typography gutterBottom variant="h4" component="p">
@@ -57,29 +44,6 @@ const Meal: React.FC<Props> = ({ meal }) => {
             Meal by: {meal.user.displayName}
           </Typography>
         </CardContent>
-
-        <Modal
-          open={modal}
-          onClose={closeModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Box component="div" className="gap-3">
-              <Box component="div" className='flex justify-center'>
-                <img className='w-40 ' src={image}  alt={meal.title}/>
-              </Box>
-              <Box component="div">
-                <p className="font-extrabold underline text-1xl capitalize">{meal.title}</p>
-                <p className="uppercase font-extrabold text-xs">recipe</p>
-                <p className="text-slate-700 text-xs">{meal.recipe}</p>
-              </Box>
-              <Box component="div">
-                <p>comments</p>
-              </Box>
-            </Box>
-          </Box>
-        </Modal>
       </Card>
     </div>
   );

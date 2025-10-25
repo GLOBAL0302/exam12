@@ -22,6 +22,7 @@ export interface IUserLoginMutation {
 export interface IComment {
   user: IUserFields;
   comment: string;
+  meal:IMeal
 }
 
 export interface IMeal {

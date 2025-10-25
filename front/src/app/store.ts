@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist';
 import { userReducer } from '../features/users/UserSlice';
 import { mealReducer } from '../features/meals/mealSlice';
+import { commentsReducer } from '../features/comments/commentsSlice';
 
 const persistConfig = {
   key: 'store',
@@ -15,6 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: persistReducer(persistConfig, userReducer),
   meal: mealReducer,
+  comments:commentsReducer
 });
 
 export const store = configureStore({
@@ -28,6 +30,5 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
 export type AppDispatch = typeof store.dispatch;
 export type Rootstate = ReturnType<typeof store.getState>;
