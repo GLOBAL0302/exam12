@@ -38,18 +38,9 @@ const userSchema = new Schema<IUserFields, IUserModel, IUserMethods>({
     type: String,
     required: true,
   },
-  mail: {
-    type: String,
-    required: true,
-  },
   avatar: {
     type: String,
     required: true,
-  },
-  role: {
-    type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
   },
   googleId: String,
   token: String,

@@ -3,9 +3,7 @@ export interface IUserFields {
   username: string;
   password: string;
   displayName: string;
-  mail: string;
   avatar: string;
-  role: string;
   token: string;
 }
 
@@ -13,13 +11,30 @@ export interface IUserRegisterMuation {
   username: string;
   password: string;
   displayName: string;
-  mail: string;
   avatar: File | null;
 }
 
 export interface IUserLoginMutation {
   username: string;
   password: string;
+}
+
+export interface IComment {
+  user: IUserFields;
+  comment: string;
+}
+
+export interface IMeal {
+  _id: string;
+  title: string;
+  image: string;
+  recipe: string;
+  comments: IComment[];
+}
+export interface IMealMutation {
+  title: string;
+  image: File | null;
+  recipe: string;
 }
 
 export interface IGlobalError {

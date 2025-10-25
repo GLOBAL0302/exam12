@@ -70,7 +70,6 @@ const UserLogin = () => {
   return (
     <>
       <CssBaseline enableColorScheme />
-
       <Box sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">

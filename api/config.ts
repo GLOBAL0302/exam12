@@ -5,7 +5,7 @@ const rootpath = __dirname;
 
 configDotenv();
 export const config = {
-  db: 'mongodb://localhost/exam',
+  db: 'mongodb://localhost/meals',
   rootpath,
   publickPath: path.join(rootpath, 'public'),
   google: {

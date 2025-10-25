@@ -14,7 +14,7 @@ const AppBarComponent = () => {
   const user = useAppSelector(selectUser);
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" className="mb-4">
         <Toolbar variant="dense" className="flex justify-around bg-black">
           <Link to="/">
             <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>

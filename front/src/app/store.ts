@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist';
 import { userReducer } from '../features/users/UserSlice';
+import { mealReducer } from '../features/meals/mealSlice';
 
 const persistConfig = {
   key: 'store',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: persistReducer(persistConfig, userReducer),
+  meal: mealReducer,
 });
 
 export const store = configureStore({

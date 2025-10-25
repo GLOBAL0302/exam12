@@ -40,7 +40,6 @@ usersRouter.post('/google', async (req, res, next) => {
         googleId: id,
         displayName,
         avatar,
-        mail,
       });
     }
     user.generateToken();
@@ -57,7 +56,6 @@ usersRouter.post('/', upload.single('avatar'), async (req, res, next) => {
       username: req.body.username,
       password: req.body.password,
       displayName: req.body.displayName,
-      mail: req.body.mail,
       avatar: req.file ? 'images' + req.file.filename : null,
     };
     const user = new User(newUser);

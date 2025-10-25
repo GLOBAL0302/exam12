@@ -1,21 +1,32 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import UserRegister from './features/users/UserRegister';
 import UserLogin from './features/users/UserLogin';
 import AppBarComponent from './components/AppToolBar/AppBarComponent';
+import AddMeal from './features/meals/AddMeal';
+
+import ProtectedRoute from './components/AppToolBar/ProtectedRoute/ProtectedRoute';
+import { useAppSelector } from './app/hooks';
+import { selectUser } from './features/users/UserSlice';
+import Meals from './features/meals/Meals';
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const user = useAppSelector(selectUser);
   return (
     <div className="overflow-hidden h-screen w-screen">
       <AppBarComponent />
       <div className="max-w-3xl mx-auto">
         <Routes>
-          <Route path="/" element={<UserRegister />} />
+          <Route path="/" element={<Meals />} />
+          <Route
+            path="/addMeals"
+            element={
+              <ProtectedRoute isAllow={user !== null}>
+                <AddMeal />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/register" element={<UserRegister />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="*" element={<h1>No Page such</h1>} />

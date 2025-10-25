@@ -64,10 +64,10 @@ const CurrentUser: React.FC<IProps> = ({ user }) => {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/myCocktails">My Cocktails</Link>
+          <Link to="/myMeals">My Meals</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link to="/addCocktail">Add Cocktail</Link>
+          <Link to="/addMeals">Add Meals</Link>
         </MenuItem>
         <MenuItem onClick={() => dispatch(logOutThunk())}>Logout</MenuItem>
       </Menu>

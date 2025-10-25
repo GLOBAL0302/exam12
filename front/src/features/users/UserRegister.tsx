@@ -25,7 +25,7 @@ import {
 import type { IUserRegisterMuation } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { googleLoginThunk, signInThunk } from './userThunk';
-import { selectUserLoginLoading, selectUserSignInError, selectUserSignInLoading, unSetSignInError } from './userSlice';
+import { selectUserLoginLoading, selectUserSignInError, selectUserSignInLoading, unSetSignInError } from './UserSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GoogleLogin, type CredentialResponse } from '@react-oauth/google';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -35,7 +35,6 @@ const initialState: IUserRegisterMuation = {
   password: '',
   displayName: '',
   avatar: null,
-  mail: '',
 };
 
 const UserRegister = () => {
@@ -151,27 +150,13 @@ const UserRegister = () => {
                 id="displayName"
                 placeholder="Jonnatan"
                 name="displayName"
-                autoComplete="email"
+                autoComplete="displayName"
                 variant="outlined"
                 helperText={getError('displayName')}
                 error={Boolean(getError('displayName'))}
               />
             </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Mail</FormLabel>
-              <TextField
-                onChange={onChangeRegisterForm}
-                value={registerForm.mail}
-                fullWidth
-                id="mail"
-                placeholder="your@mail.com"
-                name="mail"
-                autoComplete="mail"
-                variant="outlined"
-                helperText={getError('mail')}
-                error={Boolean(getError('mail'))}
-              />
-            </FormControl>
+
             <Button
               color={registerForm.avatar ? 'success' : 'primary'}
               component="label"
