@@ -25,6 +25,7 @@ export interface IComment {
 }
 
 export interface IMeal {
+  user: IUserFields
   _id: string;
   title: string;
   image: string;

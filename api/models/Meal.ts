@@ -21,21 +21,17 @@ const mealSchema = new Schema({
   },
   user: {
     type: mongoose.Types.ObjectId,
-    Ref: 'user',
-    required: [true, 'meal required recipe'],
+    ref: 'user', // should be lowercase 'ref', not 'Ref'
+    required: [true, 'meal required User'],
     validate: [
       {
         validator: async (value: mongoose.Types.ObjectId) => {
           const user = await User.findById(value);
           return Boolean(user);
         },
-        message: 'User Id is required for Cocktail',
+        message: 'User Id is required for Meal',
       },
     ],
-  },
-  comments: {
-    type: mongoose.Types.ObjectId,
-    ref: 'comment',
   },
 });
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { IMealMutation, IValidationError } from '../../types';
+import type { IMeal, IMealMutation, IValidationError } from '../../types';
 import { axiosApi } from '../../axiosApi';
 import { isAxiosError } from 'axios';
 
@@ -24,3 +24,12 @@ export const submitMealThunk = createAsyncThunk<void, IMealMutation, { rejectVal
     }
   },
 );
+
+export const fetchMealsThunk = createAsyncThunk<IMeal[], string>('meal/fetchMealsThunk', async (mealParam) => {
+  try {
+    const { data } = await axiosApi.get('/meals');
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+});

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { IMeal, IValidationError } from '../../types';
-import { submitMealThunk } from './mealThunks';
+import { fetchMealsThunk, submitMealThunk } from './mealThunks';
 
 interface IMealSliceState {
   meals: IMeal[];
@@ -21,16 +21,29 @@ const mealSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(submitMealThunk.pending, (state) => {
-      state.mealsSubmitting = true;
-    });
-    builder.addCase(submitMealThunk.fulfilled, (state) => {
-      state.mealsSubmitting = false;
-    });
-    builder.addCase(submitMealThunk.rejected, (state, { payload }) => {
-      state.mealsSubmitting = false;
-      state.mealsSubmittingError = payload || null;
-    });
+    builder
+      .addCase(submitMealThunk.pending, (state) => {
+        state.mealsSubmitting = true;
+      })
+      .addCase(submitMealThunk.fulfilled, (state) => {
+        state.mealsSubmitting = false;
+      })
+      .addCase(submitMealThunk.rejected, (state, { payload }) => {
+        state.mealsSubmitting = false;
+        state.mealsSubmittingError = payload || null;
+      });
+
+    builder
+      .addCase(fetchMealsThunk.pending, (state) => {
+        state.mealsFetching = true;
+      })
+      .addCase(fetchMealsThunk.fulfilled, (state, { payload }) => {
+        state.mealsFetching = false;
+        state.meals = payload;
+      })
+      .addCase(fetchMealsThunk.rejected, (state) => {
+        state.mealsFetching = false;
+      });
   },
   selectors: {
     selectMeals: (state) => state.meals,

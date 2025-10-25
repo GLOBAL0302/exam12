@@ -10,7 +10,7 @@ const commentSchema = new Schema({
   },
   user: {
     type: mongoose.Types.ObjectId,
-    Ref: 'user',
+    ref: 'user', // should be lowercase 'ref', not 'Ref'
     required: [true, 'Comment required User'],
     validate: [
       {
@@ -18,9 +18,13 @@ const commentSchema = new Schema({
           const user = await User.findById(value);
           return Boolean(user);
         },
-        message: 'User Id is required for Cocktail',
+        message: 'User Id is required for Comment',
       },
     ],
+  },
+  meal: {
+    type: mongoose.Types.ObjectId,
+    ref: 'meal',
   },
 });
 

@@ -9,7 +9,7 @@ import type {
 import { axiosApi } from '../../axiosApi';
 import { isAxiosError } from 'axios';
 import type { Rootstate } from '../../app/store';
-import { unSetUser } from './userSlice';
+import { unSetUser } from './UserSlice';
 
 export const signInThunk = createAsyncThunk<IUserFields, IUserRegisterMuation, { rejectValue: IValidationError }>(
   'user/signInThunk',
