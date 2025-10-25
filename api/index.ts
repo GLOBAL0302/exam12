@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { config } from './config';
 import usersRouter from './routers/usersRouter';
 import mealsRouter from './routers/mealsRouter';
+import commentsRouter from './routers/commentsRouter';
 
 const app = express();
 const PORT = 8000;
@@ -14,6 +15,7 @@ app.use(express.static('public'));
 
 app.use('/users', usersRouter);
 app.use('/meals', mealsRouter);
+app.use('/comments', commentsRouter);
 
 const run = async () => {
   await mongoose.connect(config.db);

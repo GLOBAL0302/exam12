@@ -18,7 +18,7 @@ const Meals = () => {
     void fetchMeal();
   }, [dispatch, fetchMeal]);
   return (
-    <div className='flex flex-wrap gap-3'>
+    <div className="flex flex-wrap gap-3">
       {fetchingMeals && <LinearProgress />}
       {meals.map((meal) => (
         <Meal key={meal._id} meal={meal} />

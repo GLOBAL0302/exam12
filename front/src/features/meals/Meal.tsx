@@ -25,8 +25,6 @@ interface Props {
 }
 
 const Meal: React.FC<Props> = ({ meal }) => {
-    
- 
   const navigate = useNavigate();
   let image;
   if (meal.image) {

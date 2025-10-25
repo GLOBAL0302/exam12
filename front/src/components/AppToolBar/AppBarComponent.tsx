@@ -17,7 +17,7 @@ const AppBarComponent = () => {
         <Toolbar variant="dense" className="flex justify-around bg-black">
           <Link to="/">
             <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuBookIcon/>
+              <MenuBookIcon />
               <Typography component="p" variant="body1">
                 Meal
               </Typography>

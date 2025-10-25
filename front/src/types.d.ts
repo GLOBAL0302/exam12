@@ -20,13 +20,20 @@ export interface IUserLoginMutation {
 }
 
 export interface IComment {
+  _id: string;
   user: IUserFields;
   comment: string;
-  meal:IMeal
+  meal: IMeal;
+}
+
+export interface ICommentMutation {
+  user: string;
+  comment: string;
+  meal: string;
 }
 
 export interface IMeal {
-  user: IUserFields
+  user: IUserFields;
   _id: string;
   title: string;
   image: string;

@@ -28,7 +28,7 @@ const AddMeal = () => {
   const [addMealForm, setAddMealForm] = useState<IMealMutation>(initialState);
   const dispatch = useAppDispatch();
   const mealsubmitError = useAppSelector(selectMealsSubmittingError);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ const AddMeal = () => {
     try {
       await dispatch(submitMealThunk(addMealForm)).unwrap();
       notifySuccess('Meal has been added');
-      navigate("/")
+      navigate('/');
     } catch (e) {
       console.error(e);
     }

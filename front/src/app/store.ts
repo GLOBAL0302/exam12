@@ -16,7 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: persistReducer(persistConfig, userReducer),
   meal: mealReducer,
-  comments:commentsReducer
+  comments: commentsReducer,
 });
 
 export const store = configureStore({
