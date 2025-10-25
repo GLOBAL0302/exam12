@@ -12,6 +12,7 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { selectUser } from '../users/UserSlice';
+import { notifyInfo, notifySuccess } from '../../utils/ToastifyFuncs/ToastConfig';
 
 const initialState = '';
 
@@ -35,6 +36,7 @@ const MealDetail = () => {
   const deleteComment = async (commentId: string) => {
     try {
       await dispatch(deleteCommentThunk(commentId)).unwrap();
+      notifySuccess('Comment is deleted');
       await getComment();
     } catch (e) {
       console.log(e);
@@ -55,6 +57,7 @@ const MealDetail = () => {
           comment: userText,
         };
         await dispatch(postCommentThunk(commentForm)).unwrap();
+        notifySuccess('Comment is added');
         await getComment();
         setUserText(initialState);
       }

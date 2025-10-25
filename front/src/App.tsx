@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="overflow-hidden h-screen w-screen">
       <AppBarComponent />
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <Routes>
           <Route path="/" element={<Meals />} />
           <Route path="/meals/:userId" element={<Meals />} />

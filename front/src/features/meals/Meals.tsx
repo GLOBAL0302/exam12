@@ -42,7 +42,7 @@ const Meals = () => {
   }
 
   return (
-    <div className="">
+    <div className="min-h-screen">
       {fetchingMeals && <LinearProgress />}
       <p className="text-3xl uppercase">{userId && meals.length > 0 && meals[0]?.user?.displayName}</p>
       <div className="flex justify-end mb-4">
@@ -50,10 +50,12 @@ const Meals = () => {
           Add Meal
         </Button>
       </div>
-      <div className="flex justify-center flex-wrap gap-3">
-        {meals.map((meal) => (
-          <Meal key={meal._id} meal={meal} isOwnRecipe={isOwnRecipe} fetchMeal={() => fetchMeal()} />
-        ))}
+      <div className="h-[calc(100vh-200px)] overflow-y-auto">
+        <div className="flex justify-center flex-wrap gap-3 p-4">
+          {meals.map((meal) => (
+            <Meal key={meal._id} meal={meal} isOwnRecipe={isOwnRecipe} fetchMeal={() => fetchMeal()} />
+          ))}
+        </div>
       </div>
     </div>
   );

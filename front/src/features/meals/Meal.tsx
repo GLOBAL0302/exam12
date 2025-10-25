@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch } from '../../app/hooks';
 import { deleteOneMealThunk } from './mealThunks';
+import { notifySuccess } from '../../utils/ToastifyFuncs/ToastConfig';
 
 interface Props {
   meal: IMeal;
@@ -31,9 +32,13 @@ const Meal: React.FC<Props> = ({ meal, isOwnRecipe, fetchMeal }) => {
   };
   const deleteMeal = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    await dispatch(deleteOneMealThunk(meal._id));
-
-    fetchMeal();
+    try {
+      await dispatch(deleteOneMealThunk(meal._id)).unwrap();
+      notifySuccess('Meal is deleted');
+      fetchMeal();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

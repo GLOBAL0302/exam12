@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { apiUrl } from '../../GlobalConstant';
 import { logOutThunk } from '../../features/users/userThunk';
 import { selectUser } from '../../features/users/UserSlice';
+import { notifyInfo } from '../../utils/ToastifyFuncs/ToastConfig';
 
 type IProps = {
   user: IUserFields;
@@ -34,6 +35,15 @@ const CurrentUser: React.FC<IProps> = ({ user }) => {
   if (user.avatar && (/^images/.test(user.avatar) || /^fixtures/.test(user.avatar))) {
     image = apiUrl + '/' + user.avatar;
   }
+
+  const logOut = async () => {
+    try {
+      await dispatch(logOutThunk()).unwrap();
+      notifyInfo('Log Out is success');
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div>
@@ -71,7 +81,7 @@ const CurrentUser: React.FC<IProps> = ({ user }) => {
         <MenuItem onClick={handleClose}>
           <Link to="/addMeals">Add Meals</Link>
         </MenuItem>
-        <MenuItem onClick={() => dispatch(logOutThunk())}>Logout</MenuItem>
+        <MenuItem onClick={logOut}>Logout</MenuItem>
       </Menu>
     </div>
   );

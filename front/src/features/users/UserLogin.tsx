@@ -26,6 +26,7 @@ import { googleLoginThunk, logInThunk } from './userThunk';
 import { useNavigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import LinearProgress from '@mui/material/LinearProgress';
+import { notifyInfo } from '../../utils/ToastifyFuncs/ToastConfig';
 const initialState = {
   username: '',
   password: '',
@@ -42,6 +43,7 @@ const UserLogin = () => {
 
     try {
       await dispatch(logInThunk(loginForm)).unwrap();
+      notifyInfo('Login Success');
       navigate('/');
     } catch (e) {
       console.error(e);
@@ -60,6 +62,7 @@ const UserLogin = () => {
     if (credentialResponse.credential) {
       try {
         await dispatch(googleLoginThunk(credentialResponse.credential)).unwrap();
+        notifyInfo('Login Success with google success');
         navigate('/');
       } catch (e) {
         console.error(e);

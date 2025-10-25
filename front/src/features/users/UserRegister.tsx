@@ -29,6 +29,7 @@ import { selectUserLoginLoading, selectUserSignInError, selectUserSignInLoading,
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GoogleLogin, type CredentialResponse } from '@react-oauth/google';
 import LinearProgress from '@mui/material/LinearProgress';
+import { notifyInfo } from '../../utils/ToastifyFuncs/ToastConfig';
 
 const initialState: IUserRegisterMuation = {
   username: '',
@@ -71,6 +72,7 @@ const UserRegister = () => {
     console.log(userSignInError?.errors);
     try {
       await dispatch(signInThunk(registerForm)).unwrap();
+      notifyInfo('Sign in Success');
       navigate('/');
     } catch (e) {
       console.error(e);
@@ -91,6 +93,7 @@ const UserRegister = () => {
     if (credentialResponse.credential) {
       try {
         await dispatch(googleLoginThunk(credentialResponse.credential)).unwrap();
+        notifyInfo('Sign in is Success with Google');
         navigate('/');
       } catch (e) {
         console.error(e);
